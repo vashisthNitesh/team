@@ -11,5 +11,5 @@ django-admin-sortable2==2.2.8
 djangocms-admin-style==3.3.1
 django-treebeard==4.7.1
 django-sekizai==4.1.0
-djangocms-text==0.6.2
+djangocms-text==0.9.3
 Pillow==11.2.1

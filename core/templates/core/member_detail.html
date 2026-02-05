@@ -83,7 +83,7 @@
     {% for related in related_members %}
     <a href="{{ related.get_absolute_url }}" class="reveal group relative overflow-hidden rounded-3xl">
       {% if related.photo %}
-        {% thumbnail related.photo 500x640 crop upscale format='AVIF' as thumb %}
+        {% thumbnail related.photo 500x640 crop upscale as thumb %}
         <img src="{{ thumb.url }}" alt="{{ related.name }}" loading="lazy" class="h-52 w-full object-cover transition duration-500 group-hover:scale-110" />
       {% else %}
         <div class="h-52 w-full bg-slate-200 dark:bg-slate-800"></div>

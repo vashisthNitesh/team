@@ -1,3 +1,8 @@
+from cms.plugin_pool import plugin_pool
 from django.test import TestCase
 
-# Create your tests here.
+
+class PluginRegistrationTests(TestCase):
+    def test_team_plugins_are_registered(self):
+        self.assertIn('TeamMemberListPluginCMSPlugin', plugin_pool.plugins)
+        self.assertIn('TeamMemberDetailPluginCMSPlugin', plugin_pool.plugins)

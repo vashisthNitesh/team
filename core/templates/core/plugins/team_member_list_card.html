@@ -1,0 +1,15 @@
+{% load thumbnail %}
+<a href="{{ instance.member.get_absolute_url }}" class="reveal group overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-xl dark:border-slate-800 dark:bg-slate-900">
+  {% if instance.member.photo %}
+    {% thumbnail instance.member.photo 900x650 crop upscale as image %}
+    <img src="{{ image.url }}" width="{{ image.width }}" height="{{ image.height }}" alt="{{ instance.member.name }}" loading="lazy" class="h-60 w-full object-cover transition duration-500 group-hover:scale-105" />
+  {% else %}
+    <div class="h-60 w-full bg-slate-200 dark:bg-slate-800"></div>
+  {% endif %}
+  <div class="p-5">
+    {% if instance.eyebrow %}<p class="text-xs font-semibold uppercase tracking-wide text-slate-500">{{ instance.eyebrow }}</p>{% endif %}
+    <h2 class="font-heading text-xl font-semibold">{{ instance.member.name }}</h2>
+    <p class="mt-1 text-sm text-brand-deep dark:text-brand-bright">{{ instance.member.role }}</p>
+    <p class="mt-3 line-clamp-2 text-sm text-slate-600 dark:text-slate-300">{{ instance.summary|default:instance.member.short_bio|default:instance.member.tagline }}</p>
+  </div>
+</a>

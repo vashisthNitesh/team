@@ -51,3 +51,24 @@ class Skill(models.Model):
 
     def __str__(self):
         return f'{self.name} ({self.percentage}%)'
+
+
+from cms.models import CMSPlugin
+
+
+class TeamMemberListPlugin(CMSPlugin):
+    member = models.ForeignKey(TeamMember, related_name='list_plugins', on_delete=models.CASCADE)
+    eyebrow = models.CharField(max_length=80, blank=True, help_text='Optional small label shown above the name.')
+    summary = models.CharField(max_length=220, blank=True, help_text='Optional text override for the card summary.')
+
+    def __str__(self):
+        return f'List card: {self.member.name}'
+
+
+class TeamMemberDetailPlugin(CMSPlugin):
+    member = models.ForeignKey(TeamMember, related_name='detail_plugins', on_delete=models.CASCADE)
+    section_title = models.CharField(max_length=120, default='Biography')
+    description_override = models.TextField(blank=True, help_text='Optional override for the biography text.')
+
+    def __str__(self):
+        return f'Detail section: {self.member.name}'

@@ -14,7 +14,7 @@
     {% for member in members %}
       <a href="{{ member.get_absolute_url }}" class="reveal group overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-xl dark:border-slate-800 dark:bg-slate-900">
         {% if member.photo %}
-          {% thumbnail member.photo 900x650 crop upscale format='WEBP' as image %}
+          {% thumbnail member.photo 900x650 crop upscale as image %}
           <img src="{{ image.url }}" width="{{ image.width }}" height="{{ image.height }}" alt="{{ member.name }}" loading="lazy" class="h-60 w-full object-cover transition duration-500 group-hover:scale-105" />
         {% else %}
           <div class="h-60 w-full bg-slate-200 dark:bg-slate-800"></div>

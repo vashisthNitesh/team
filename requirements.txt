@@ -1,0 +1,15 @@
+Django==5.2.3
+django-cms==5.0.5
+djangocms-text-ckeditor==5.1.7
+djangocms-picture==4.1.1
+djangocms-link==5.1.0
+djangocms-file==5.0.1
+djangocms-video==5.0.1
+django-filer==3.3.3
+easy-thumbnails==2.10.1
+django-admin-sortable2==2.2.8
+djangocms-admin-style==3.3.1
+django-treebeard==4.7.1
+django-sekizai==4.1.0
+djangocms-text==0.6.2
+Pillow==11.2.1

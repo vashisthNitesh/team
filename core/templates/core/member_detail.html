@@ -1,5 +1,9 @@
+{% extends "base.html" %}
 {% load thumbnail custom_filters %}
 
+{% block title %}{{ member.name }} · Solak{% endblock %}
+
+{% block content %}
 <article class="min-h-screen bg-gray-50 dark:bg-gray-950">
 
   <!-- Hero / Header -->
@@ -134,3 +138,4 @@
   </div>
 
 </article>
+{% endblock %}

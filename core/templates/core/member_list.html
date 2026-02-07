@@ -4,33 +4,40 @@
 {% block title %}Team · Solak{% endblock %}
 
 {% block content %}
-<section class="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
-  <header class="mb-10 reveal">
-    <h1 class="font-heading text-4xl font-bold">Meet the Team</h1>
-    <p class="mt-2 max-w-2xl text-slate-600 dark:text-slate-300">A high-performing, multidisciplinary group building sustainable energy experiences.</p>
-  </header>
+<section class="section">
+  <div class="container">
+    <header class="section-header">
+      <p class="eyebrow">Our people</p>
+      <h1>Meet the Team</h1>
+      <p>A high-performing, multidisciplinary group building sustainable energy experiences.</p>
+    </header>
 
-  <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-    {% static_placeholder "team_list_plugins" %}
+    <div class="row g-4">
+      {% static_placeholder "team_list_plugins" %}
 
-    {% for member in members %}
-      <a href="{{ member.get_absolute_url }}" class="reveal group overflow-hidden rounded-3xl border border-dashed border-slate-300 bg-white/60 shadow-sm transition hover:-translate-y-1 hover:shadow-xl dark:border-slate-700 dark:bg-slate-900/60">
-        {% if member.photo %}
-          {% thumbnail member.photo 900x650 crop upscale as image %}
-          <img src="{{ image.url }}" width="{{ image.width }}" height="{{ image.height }}" alt="{{ member.name }}" loading="lazy" class="h-60 w-full object-cover transition duration-500 group-hover:scale-105" />
-        {% else %}
-          <div class="h-60 w-full bg-slate-200 dark:bg-slate-800"></div>
-        {% endif %}
-        <div class="p-5">
-          <p class="text-xs font-semibold uppercase tracking-wide text-slate-500">Fallback card</p>
-          <h2 class="font-heading text-xl font-semibold">{{ member.name }}</h2>
-          <p class="mt-1 text-sm text-brand-deep dark:text-brand-bright">{{ member.role }}</p>
-          <p class="mt-3 line-clamp-2 text-sm text-slate-600 dark:text-slate-300">{{ member.short_bio|default:member.tagline }}</p>
+      {% for member in members %}
+        <div class="col-12 col-md-6 col-lg-4">
+          <a href="{{ member.get_absolute_url }}" class="text-decoration-none text-reset">
+            <div class="ui-card h-100">
+              {% if member.photo %}
+                {% thumbnail member.photo 900x650 crop upscale as image %}
+                <img src="{{ image.url }}" width="{{ image.width }}" height="{{ image.height }}" alt="{{ member.name }}" loading="lazy" class="card-img-top" />
+              {% else %}
+                <div class="card-img-top bg-light" style="height: 220px;"></div>
+              {% endif %}
+              <div class="card-body">
+                <p class="eyebrow mb-2">Team member</p>
+                <h2 class="h5 fw-semibold">{{ member.name }}</h2>
+                <p class="text-primary fw-semibold mb-2">{{ member.role }}</p>
+                <p class="text-muted mb-0">{{ member.short_bio|default:member.tagline }}</p>
+              </div>
+            </div>
+          </a>
         </div>
-      </a>
-    {% empty %}
-      <p>No team members found. Add members or Team Member List Card plugins in the <strong>team_list_plugins</strong> static placeholder.</p>
-    {% endfor %}
+      {% empty %}
+        <p>No team members found. Add members or Team Member List Card plugins in the <strong>team_list_plugins</strong> static placeholder.</p>
+      {% endfor %}
+    </div>
   </div>
 </section>
 {% endblock %}

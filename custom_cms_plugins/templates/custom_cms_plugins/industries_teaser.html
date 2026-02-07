@@ -1,16 +1,16 @@
 {% load cms_tags %}
-<section class="py-5 bg-white">
+<section class="section section-muted">
   <div class="container">
     <div class="row align-items-center mb-4">
       <div class="col-lg-6">
-        <h2 class="fw-semibold text-primary">{{ instance.heading }}</h2>
+        <h2 class="fw-semibold">{{ instance.heading }}</h2>
         {% if instance.description %}
           <p class="text-muted">{{ instance.description }}</p>
         {% endif %}
       </div>
       <div class="col-lg-6 text-lg-end">
         {% if instance.badge_text %}
-          <span class="badge bg-primary-subtle text-primary">{{ instance.badge_text }}</span>
+          <span class="ui-badge">{{ instance.badge_text }}</span>
         {% endif %}
       </div>
     </div>

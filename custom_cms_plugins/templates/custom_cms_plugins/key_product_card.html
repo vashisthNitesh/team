@@ -1,5 +1,5 @@
 <div class="col-12 col-md-6 col-lg-4">
-  <div class="card h-100 border-0 shadow-sm">
+  <div class="ui-card h-100">
     {% if instance.image %}
       <img src="{{ instance.image.url }}" class="card-img-top" alt="{{ instance.alt_text|default:instance.name }}">
     {% endif %}
@@ -9,7 +9,7 @@
         <p class="text-muted">{{ instance.description }}</p>
       {% endif %}
       {% if instance.link_url %}
-        <a class="btn btn-outline-primary btn-sm" href="{{ instance.link_url }}">{{ instance.button_text }}</a>
+        <a class="btn btn-outline-secondary btn-sm" href="{{ instance.link_url }}">{{ instance.button_text }}</a>
       {% endif %}
     </div>
   </div>

@@ -1,11 +1,11 @@
 {% load cms_tags %}
-<section class="py-5 bg-light">
+<section class="section section-muted">
   <div class="container">
     {% if instance.heading %}
-      <div class="text-center mb-4">
-        <h2 class="fw-semibold text-primary">{{ instance.heading }}</h2>
+      <div class="section-header text-center">
+        <h2>{{ instance.heading }}</h2>
         {% if instance.description %}
-          <p class="text-muted">{{ instance.description }}</p>
+          <p>{{ instance.description }}</p>
         {% endif %}
       </div>
     {% endif %}

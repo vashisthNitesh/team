@@ -1,6 +1,6 @@
 {% load cms_tags %}
-<section class="bg-dark text-white">
-  <div id="heroCarousel-{{ instance.pk }}" class="carousel slide" data-bs-ride="carousel" {% if instance.autoplay %}data-bs-interval="{{ instance.interval_ms }}"{% endif %}>
+<section class="section-hero">
+  <div id="heroCarousel-{{ instance.pk }}" class="carousel slide carousel-fade hero-slide" data-bs-ride="carousel" {% if instance.autoplay %}data-bs-interval="{{ instance.interval_ms }}"{% endif %}>
     <div class="carousel-inner">
       {% for plugin in instance.child_plugin_instances %}
         {% render_plugin plugin %}

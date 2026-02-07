@@ -3,19 +3,17 @@
     <img src="{{ instance.image.url }}" class="d-block w-100" alt="{{ instance.alt_text|default:instance.title }}">
   {% endif %}
   <div class="carousel-caption d-flex h-100 align-items-center text-start">
-    <div class="w-100 p-4 rounded-3" style="background-color: {{ instance.overlay_color }}; opacity: {{ instance.overlay_opacity }};">
-      <div class="opacity-100">
-        {% if instance.eyebrow_text %}
-          <p class="text-uppercase small text-info mb-2">{{ instance.eyebrow_text }}</p>
-        {% endif %}
-        <h1 class="display-5 fw-bold">{{ instance.title }}</h1>
-        {% if instance.subtitle %}
-          <p class="lead mb-4">{{ instance.subtitle }}</p>
-        {% endif %}
-        {% if instance.button_text %}
-          <a class="btn btn-primary btn-lg" href="{{ instance.button_url }}">{{ instance.button_text }}</a>
-        {% endif %}
-      </div>
+    <div class="hero-overlay w-100 p-4 p-lg-5 rounded-4" style="background-color: {{ instance.overlay_color }}; opacity: {{ instance.overlay_opacity }};">
+      {% if instance.eyebrow_text %}
+        <p class="eyebrow text-white-50 mb-2">{{ instance.eyebrow_text }}</p>
+      {% endif %}
+      <h1 class="display-4 fw-bold">{{ instance.title }}</h1>
+      {% if instance.subtitle %}
+        <p class="lead mb-4">{{ instance.subtitle }}</p>
+      {% endif %}
+      {% if instance.button_text %}
+        <a class="btn btn-primary btn-lg" href="{{ instance.button_url }}">{{ instance.button_text }}</a>
+      {% endif %}
     </div>
   </div>
 </div>

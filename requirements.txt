@@ -1,15 +1,33 @@
+# Core
 Django==5.2.3
 django-cms==5.0.5
+
+# CMS plugins (your current versions are fine and compatible)
 djangocms-text-ckeditor==5.1.7
 djangocms-picture==4.1.1
 djangocms-link==5.1.0
 djangocms-file==3.0.1
 djangocms-video==3.0.0
+djangocms-text==0.9.3
+
+# Media / file handling
 django-filer==3.3.3
 easy-thumbnails==2.10.1
+
+# Admin & structure
 django-admin-sortable2==2.2.8
 djangocms-admin-style==3.3.1
 django-treebeard==4.7.1
 django-sekizai==4.1.0
-djangocms-text==0.9.3
-Pillow==11.2.1
+
+# Database – PostgreSQL adapter (updated to latest stable as of early 2026)
+psycopg2-binary>=2.9.10  # or exactly ==2.9.10 if you prefer pinning
+
+# Utilities / env
+django-environ==0.8.1
+Pillow==11.2.1  # already good
+
+# Optional but recommended for production / debugging
+# gunicorn==23.0.0               # if using gunicorn
+# whitenoise==6.8.2              # static files in production
+# sentry-sdk[django]             # if using Sentry

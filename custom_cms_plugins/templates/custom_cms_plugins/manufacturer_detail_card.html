@@ -1,0 +1,29 @@
+<div class="col-12 col-lg-6">
+  <div class="card h-100 border-0 shadow-sm">
+    <div class="card-body">
+      {% if instance.logo %}
+        <img src="{{ instance.logo.url }}" class="mb-3" alt="{{ instance.alt_text|default:instance.name }}">
+      {% endif %}
+      <h5 class="card-title">{{ instance.name }}</h5>
+      {% if instance.description %}
+        <p class="text-muted">{{ instance.description }}</p>
+      {% endif %}
+      {% if instance.key_lines %}
+        <ul class="small text-muted">
+          {% for line in instance.key_lines.splitlines %}
+            <li>{{ line }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+      {% if instance.certificates %}
+        <div class="mt-3">
+          <span class="small text-muted">Certificates</span><br>
+          <img src="{{ instance.certificates.url }}" alt="{{ instance.alt_text|default:instance.name }} certificate" class="img-fluid mt-2">
+        </div>
+      {% endif %}
+      {% if instance.link_url %}
+        <a class="btn btn-outline-primary btn-sm mt-3" href="{{ instance.link_url }}">View catalog</a>
+      {% endif %}
+    </div>
+  </div>
+</div>

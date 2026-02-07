@@ -1,0 +1,12 @@
+<section class="py-4 border-bottom bg-white">
+  <div class="container">
+    {# Consider adding djangocms-breadcrumbs plugin above for navigation. #}
+    {% if instance.breadcrumb_label %}
+      <nav class="small text-muted">{{ instance.breadcrumb_label }}</nav>
+    {% endif %}
+    <h1 class="fw-semibold text-primary">{{ instance.title }}</h1>
+    {% if instance.description %}
+      <p class="text-muted">{{ instance.description }}</p>
+    {% endif %}
+  </div>
+</section>

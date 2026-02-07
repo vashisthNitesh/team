@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     'djangocms_video',
     'adminsortable2',
     'core',
+    'custom_cms_plugins',
 ]
 
 MIDDLEWARE = [
@@ -104,6 +105,13 @@ CMS_TEMPLATES = [
     ('base.html', 'Default'),
     ('core/member_detail.html', 'Team Member Detail'),
     ('core/member_list.html', 'Team Member List'),
+    ('pages/home.html', 'Home Page'),
+    ('pages/products_overview.html', 'Products Overview'),
+    ('pages/brand_page.html', 'Brand Page'),
+    ('pages/subcategory_listing.html', 'Sub-category Listing'),
+    ('pages/industry_pharma.html', 'Industry - Pharma'),
+    ('pages/manufacturers.html', 'Manufacturers'),
+    ('pages/contact.html', 'Contact'),
 ]
 
 CMS_PERMISSION = True

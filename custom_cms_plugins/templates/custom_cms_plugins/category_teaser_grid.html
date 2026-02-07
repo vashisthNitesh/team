@@ -1,0 +1,18 @@
+{% load cms_tags %}
+<section class="py-5">
+  <div class="container">
+    {% if instance.heading %}
+      <div class="text-center mb-4">
+        <h2 class="fw-semibold text-primary">{{ instance.heading }}</h2>
+        {% if instance.description %}
+          <p class="text-muted">{{ instance.description }}</p>
+        {% endif %}
+      </div>
+    {% endif %}
+    <div class="row g-4">
+      {% for plugin in instance.child_plugin_instances %}
+        {% render_plugin plugin %}
+      {% endfor %}
+    </div>
+  </div>
+</section>

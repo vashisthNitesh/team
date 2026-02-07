@@ -1,0 +1,38 @@
+<section class="py-5 bg-light">
+  <div class="container">
+    {% if instance.heading %}
+      <h2 class="fw-semibold text-primary">{{ instance.heading }}</h2>
+    {% endif %}
+    <div class="row g-4">
+      <div class="col-lg-6">
+        {% if instance.address %}
+          <p class="mb-2"><strong>Address</strong><br>{{ instance.address|linebreaksbr }}</p>
+        {% endif %}
+        {% if instance.phone %}
+          <p class="mb-2"><strong>Phone</strong><br>{{ instance.phone }}</p>
+        {% endif %}
+        {% if instance.email %}
+          <p class="mb-2"><strong>Email</strong><br>{{ instance.email }}</p>
+        {% endif %}
+      </div>
+      <div class="col-lg-6">
+        {% if instance.hours %}
+          <p class="mb-2"><strong>Hours</strong></p>
+          <ul class="list-unstyled small text-muted">
+            {% for line in instance.hours.splitlines %}
+              <li>{{ line }}</li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+        {% if instance.social_links %}
+          <p class="mb-2"><strong>Connect</strong></p>
+          <ul class="list-unstyled small text-muted">
+            {% for line in instance.social_links.splitlines %}
+              <li>{{ line }}</li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>

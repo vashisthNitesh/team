@@ -1,0 +1,18 @@
+<section class="py-5 bg-dark text-white">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-6">
+        <span class="text-uppercase small text-info">Industry focus</span>
+        <h1 class="display-5 fw-bold">{{ instance.title }}</h1>
+        {% if instance.description %}
+          <p class="lead opacity-75">{{ instance.description }}</p>
+        {% endif %}
+      </div>
+      <div class="col-lg-6 text-lg-end mt-4 mt-lg-0">
+        {% if instance.banner_image %}
+          <img src="{{ instance.banner_image.url }}" class="img-fluid rounded-3 shadow" alt="{{ instance.alt_text|default:instance.title }}">
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>

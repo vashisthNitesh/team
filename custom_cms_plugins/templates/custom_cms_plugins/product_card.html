@@ -1,0 +1,26 @@
+<div class="col-12 col-md-6 col-lg-4">
+  <div class="card h-100 shadow-sm border-0">
+    {% if instance.image %}
+      <img src="{{ instance.image.url }}" class="card-img-top" alt="{{ instance.alt_text|default:instance.title }}">
+    {% endif %}
+    <div class="card-body">
+      <div class="d-flex align-items-center justify-content-between mb-2">
+        <h5 class="card-title mb-0">{{ instance.title }}</h5>
+        {% if instance.badge %}
+          <span class="badge bg-primary">{{ instance.badge }}</span>
+        {% endif %}
+      </div>
+      {% if instance.model_no %}
+        <p class="text-muted small">Model: {{ instance.model_no }}</p>
+      {% endif %}
+      {% if instance.short_description %}
+        <p class="card-text">{{ instance.short_description }}</p>
+      {% endif %}
+    </div>
+    {% if instance.link_url %}
+      <div class="card-footer bg-transparent border-0">
+        <a href="{{ instance.link_url }}" class="btn btn-outline-primary">View details</a>
+      </div>
+    {% endif %}
+  </div>
+</div>

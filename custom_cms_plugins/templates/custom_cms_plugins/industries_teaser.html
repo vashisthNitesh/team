@@ -1,0 +1,21 @@
+{% load cms_tags %}
+<section class="py-5 bg-white">
+  <div class="container">
+    <div class="row align-items-center mb-4">
+      <div class="col-lg-6">
+        <h2 class="fw-semibold text-primary">{{ instance.heading }}</h2>
+        {% if instance.description %}
+          <p class="text-muted">{{ instance.description }}</p>
+        {% endif %}
+      </div>
+      <div class="col-lg-6 text-lg-end">
+        <span class="badge bg-primary-subtle text-primary">Pharma-ready automation</span>
+      </div>
+    </div>
+    <div class="row g-4">
+      {% for plugin in instance.child_plugin_instances %}
+        {% render_plugin plugin %}
+      {% endfor %}
+    </div>
+  </div>
+</section>

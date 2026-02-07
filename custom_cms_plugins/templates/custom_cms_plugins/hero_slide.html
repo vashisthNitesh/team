@@ -1,0 +1,19 @@
+<div class="carousel-item {% if instance.position == 0 %}active{% endif %}">
+  {% if instance.image %}
+    <img src="{{ instance.image.url }}" class="d-block w-100" alt="{{ instance.alt_text|default:instance.title }}">
+  {% endif %}
+  <div class="carousel-caption d-flex h-100 align-items-center text-start">
+    <div class="w-100 p-4 rounded-3" style="background-color: {{ instance.overlay_color }}; opacity: {{ instance.overlay_opacity }};">
+      <div class="opacity-100">
+        <p class="text-uppercase small text-info mb-2">Trusted industrial automation partner</p>
+        <h1 class="display-5 fw-bold">{{ instance.title }}</h1>
+        {% if instance.subtitle %}
+          <p class="lead mb-4">{{ instance.subtitle }}</p>
+        {% endif %}
+        {% if instance.button_text %}
+          <a class="btn btn-primary btn-lg" href="{{ instance.button_url }}">{{ instance.button_text }}</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>

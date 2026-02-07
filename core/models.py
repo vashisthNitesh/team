@@ -56,6 +56,11 @@ class Skill(models.Model):
 from cms.models import CMSPlugin
 
 
+class TeamMemberListGrid(CMSPlugin):
+    def __str__(self):
+        return 'Team member list grid'
+
+
 class TeamMemberListPlugin(CMSPlugin):
     member = models.ForeignKey(TeamMember, related_name='list_plugins', on_delete=models.CASCADE)
     eyebrow = models.CharField(max_length=80, blank=True, help_text='Optional small label shown above the name.')

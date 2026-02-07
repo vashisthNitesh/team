@@ -17,12 +17,12 @@
       {% endif %}
       {% if instance.certificates %}
         <div class="mt-3">
-          <span class="small text-muted">Certificates</span><br>
+          <span class="small text-muted">{{ instance.certificates_label }}</span><br>
           <img src="{{ instance.certificates.url }}" alt="{{ instance.alt_text|default:instance.name }} certificate" class="img-fluid mt-2">
         </div>
       {% endif %}
       {% if instance.link_url %}
-        <a class="btn btn-outline-primary btn-sm mt-3" href="{{ instance.link_url }}">View catalog</a>
+        <a class="btn btn-outline-primary btn-sm mt-3" href="{{ instance.link_url }}">{{ instance.button_text }}</a>
       {% endif %}
     </div>
   </div>

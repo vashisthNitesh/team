@@ -38,6 +38,11 @@ class HeroSlide(CMSPlugin):
         related_name='+',
         help_text='Suggested: industrial automation, Siemens PLC, pharma production.',
     )
+    eyebrow_text = models.CharField(
+        max_length=120,
+        blank=True,
+        help_text='Optional short label above the title, e.g. Trusted automation partner.',
+    )
     title = models.CharField(max_length=200)
     subtitle = models.TextField(blank=True)
     button_text = models.CharField(max_length=80, blank=True)
@@ -61,6 +66,7 @@ class FeaturedProductsGrid(CMSPlugin):
 class ProductCard(CMSPlugin):
     title = models.CharField(max_length=200)
     model_no = models.CharField(max_length=100, blank=True)
+    model_label = models.CharField(max_length=60, blank=True, default='Model')
     image = FilerImageField(
         on_delete=models.SET_NULL,
         null=True,
@@ -70,6 +76,7 @@ class ProductCard(CMSPlugin):
     )
     short_description = models.TextField(blank=True)
     link_url = models.URLField(blank=True)
+    button_text = models.CharField(max_length=80, blank=True, default='View details')
     badge = models.CharField(max_length=50, blank=True)
     alt_text = models.CharField(max_length=150, blank=True)
 
@@ -101,6 +108,7 @@ class CategoryCard(CMSPlugin):
         help_text='Suggested: industrial automation, sensors, control panels.',
     )
     link_url = models.URLField(blank=True)
+    button_text = models.CharField(max_length=80, blank=True, default='Explore')
     alt_text = models.CharField(max_length=150, blank=True)
 
     def __str__(self):
@@ -110,6 +118,11 @@ class CategoryCard(CMSPlugin):
 class IndustriesTeaser(CMSPlugin):
     heading = models.CharField(max_length=200, blank=True)
     description = models.TextField(blank=True)
+    badge_text = models.CharField(
+        max_length=120,
+        blank=True,
+        help_text='Optional badge label shown above the cards.',
+    )
 
     def __str__(self):
         return self.heading or 'Industries Teaser'
@@ -126,6 +139,7 @@ class IndustryCard(CMSPlugin):
         help_text='Suggested: pharma production line, clean room.',
     )
     link_url = models.URLField(blank=True)
+    button_text = models.CharField(max_length=80, blank=True, default='See solutions')
     alt_text = models.CharField(max_length=150, blank=True)
 
     def __str__(self):
@@ -151,6 +165,7 @@ class BrandLogoCard(CMSPlugin):
         help_text='Suggested: Siemens, SICK, ABB logo.',
     )
     link_url = models.URLField(blank=True)
+    button_text = models.CharField(max_length=80, blank=True, default='View brand')
     alt_text = models.CharField(max_length=150, blank=True)
 
     def __str__(self):
@@ -160,6 +175,15 @@ class BrandLogoCard(CMSPlugin):
 class QuickContactForm(CMSPlugin):
     heading = models.CharField(max_length=200, blank=True)
     description = models.TextField(blank=True)
+    benefits = models.TextField(
+        blank=True,
+        help_text='Enter benefit bullet points, one per line.',
+    )
+    helper_text = models.CharField(
+        max_length=160,
+        blank=True,
+        help_text='Optional helper text shown near the submit button.',
+    )
     submit_label = models.CharField(max_length=60, default='Request a quote')
 
     def __str__(self):
@@ -193,6 +217,11 @@ class BrandOverviewCard(CMSPlugin):
 
 class BrandHero(CMSPlugin):
     brand_name = models.CharField(max_length=200)
+    eyebrow_text = models.CharField(
+        max_length=120,
+        blank=True,
+        help_text='Optional label above the brand name.',
+    )
     tagline = models.CharField(max_length=200, blank=True)
     description = models.TextField(blank=True)
     banner_image = FilerImageField(
@@ -226,6 +255,7 @@ class SubCategoryCard(CMSPlugin):
         related_name='+',
     )
     link_url = models.URLField(blank=True)
+    button_text = models.CharField(max_length=80, blank=True, default='Browse')
     alt_text = models.CharField(max_length=150, blank=True)
 
     def __str__(self):
@@ -252,6 +282,7 @@ class ProductListingGrid(CMSPlugin):
 class ProductItem(CMSPlugin):
     name = models.CharField(max_length=200)
     model_no = models.CharField(max_length=100, blank=True)
+    model_label = models.CharField(max_length=60, blank=True, default='Model')
     key_specs = models.TextField(
         blank=True,
         help_text='Enter bullet items separated by new lines.',
@@ -263,7 +294,9 @@ class ProductItem(CMSPlugin):
         related_name='+',
     )
     request_quote_url = models.URLField(blank=True)
+    request_quote_label = models.CharField(max_length=80, blank=True, default='Request quote')
     detail_url = models.URLField(blank=True)
+    detail_label = models.CharField(max_length=80, blank=True, default='View detail')
     alt_text = models.CharField(max_length=150, blank=True)
 
     def __str__(self):
@@ -272,6 +305,11 @@ class ProductItem(CMSPlugin):
 
 class IndustryHero(CMSPlugin):
     title = models.CharField(max_length=200)
+    eyebrow_text = models.CharField(
+        max_length=120,
+        blank=True,
+        help_text='Optional label above the title.',
+    )
     description = models.TextField(blank=True)
     banner_image = FilerImageField(
         on_delete=models.SET_NULL,
@@ -320,6 +358,7 @@ class KeyProductCard(CMSPlugin):
         related_name='+',
     )
     link_url = models.URLField(blank=True)
+    button_text = models.CharField(max_length=80, blank=True, default='Learn more')
     alt_text = models.CharField(max_length=150, blank=True)
 
     def __str__(self):
@@ -337,6 +376,7 @@ class CaseStudiesGrid(CMSPlugin):
 class CaseStudyCard(CMSPlugin):
     title = models.CharField(max_length=200)
     client = models.CharField(max_length=200, blank=True)
+    client_label = models.CharField(max_length=80, blank=True, default='Client')
     summary = models.TextField(blank=True)
     results = models.TextField(
         blank=True,
@@ -349,6 +389,7 @@ class CaseStudyCard(CMSPlugin):
         related_name='+',
     )
     link_url = models.URLField(blank=True)
+    button_text = models.CharField(max_length=80, blank=True, default='Read case study')
     alt_text = models.CharField(max_length=150, blank=True)
 
     def __str__(self):
@@ -382,7 +423,9 @@ class ManufacturerDetailCard(CMSPlugin):
         blank=True,
         related_name='+',
     )
+    certificates_label = models.CharField(max_length=80, blank=True, default='Certificates')
     link_url = models.URLField(blank=True)
+    button_text = models.CharField(max_length=80, blank=True, default='View catalog')
     alt_text = models.CharField(max_length=150, blank=True)
 
     def __str__(self):
@@ -415,13 +458,18 @@ class ContactFormFull(CMSPlugin):
 
 class ContactInfoBlock(CMSPlugin):
     heading = models.CharField(max_length=200, blank=True)
+    address_label = models.CharField(max_length=80, blank=True, default='Address')
     address = models.TextField(blank=True)
+    phone_label = models.CharField(max_length=80, blank=True, default='Phone')
     phone = models.CharField(max_length=100, blank=True)
+    email_label = models.CharField(max_length=80, blank=True, default='Email')
     email = models.EmailField(blank=True)
+    hours_label = models.CharField(max_length=80, blank=True, default='Hours')
     hours = models.TextField(
         blank=True,
         help_text='Enter hours with one line per row, e.g. Mon-Fri: 08:00-18:00.',
     )
+    social_label = models.CharField(max_length=80, blank=True, default='Connect')
     social_links = models.TextField(
         blank=True,
         help_text='Enter social links, one per line as Label|URL.',

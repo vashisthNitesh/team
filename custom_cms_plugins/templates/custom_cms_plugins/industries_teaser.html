@@ -9,7 +9,9 @@
         {% endif %}
       </div>
       <div class="col-lg-6 text-lg-end">
-        <span class="badge bg-primary-subtle text-primary">Pharma-ready automation</span>
+        {% if instance.badge_text %}
+          <span class="badge bg-primary-subtle text-primary">{{ instance.badge_text }}</span>
+        {% endif %}
       </div>
     </div>
     <div class="row g-4">

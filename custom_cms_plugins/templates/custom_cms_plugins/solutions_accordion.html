@@ -1,15 +1,15 @@
 {% load cms_tags %}
-<section class="section">
-  <div class="container">
+<section class="bg-white py-12 sm:py-16 lg:py-20 dark:bg-slate-950">
+  <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
     {% if instance.heading %}
-      <div class="section-header">
-        <h2>{{ instance.heading }}</h2>
+      <div class="mb-10 space-y-3 text-center">
+        <h2 class="text-3xl font-semibold text-slate-900 dark:text-white">{{ instance.heading }}</h2>
         {% if instance.description %}
-          <p>{{ instance.description }}</p>
+          <p class="text-base text-slate-600 dark:text-slate-300">{{ instance.description }}</p>
         {% endif %}
       </div>
     {% endif %}
-    <div class="accordion" id="solutionsAccordion-{{ instance.pk }}">
+    <div class="space-y-4">
       {% for plugin in instance.child_plugin_instances %}
         {% render_plugin plugin %}
       {% endfor %}

@@ -1,6 +1,6 @@
 {% load cms_tags sekizai_tags menu_tags static %}
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth" x-data="themeToggle()" x-init="initTheme()" :class="{ 'dark': isDark }">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -9,15 +9,126 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="{% static 'solak_cms/css/site.css' %}">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              500: '#3b82f6',
+              600: '#2563eb',
+              700: '#1d4ed8',
+            },
+          },
+          boxShadow: {
+            lift: '0 10px 25px -10px rgba(15, 23, 42, 0.35)',
+          },
+        },
+      },
+    }
+  </script>
+  <style>
+    .htmx-indicator {
+      opacity: 0;
+      transition: opacity 200ms ease;
+    }
+    .htmx-request .htmx-indicator,
+    .htmx-request.htmx-indicator {
+      opacity: 1;
+    }
+  </style>
   {% render_block 'css' %}
 </head>
-<body>
+<body class="bg-slate-50 text-slate-900 antialiased dark:bg-slate-950 dark:text-slate-100">
   {% cms_toolbar %}
-  <header class="navbar-modern">
-    <div class="container py-3 d-flex align-items-center justify-content-between">
-      {% static_placeholder "site_header" %}
+  <div id="global-loading" class="htmx-indicator fixed inset-x-0 top-0 z-[60] h-1 bg-gradient-to-r from-brand-600 via-emerald-400 to-brand-600"></div>
+
+  <header class="sticky top-0 z-50 border-b border-slate-200 bg-white/90 backdrop-blur dark:border-slate-800 dark:bg-slate-950/90">
+    <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
+      <div class="flex items-center gap-4">
+        {% static_placeholder "site_logo" %}
+      </div>
+      <nav class="hidden items-center gap-6 lg:flex" aria-label="Primary">
+        <div class="relative" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
+          <button
+            type="button"
+            class="flex items-center gap-2 text-sm font-semibold text-slate-700 transition hover:text-brand-600 dark:text-slate-200"
+            @focus="open = true"
+            @blur="open = false"
+            aria-expanded="false"
+          >
+            Products
+            <span class="text-xs">▾</span>
+          </button>
+          <div
+            x-cloak
+            x-show="open"
+            x-transition:enter="transition ease-out duration-200"
+            x-transition:enter-start="opacity-0 translate-y-2"
+            x-transition:enter-end="opacity-100 translate-y-0"
+            x-transition:leave="transition ease-in duration-150"
+            x-transition:leave-start="opacity-100 translate-y-0"
+            x-transition:leave-end="opacity-0 translate-y-2"
+            class="absolute left-0 mt-4 w-[28rem] rounded-2xl border border-slate-200 bg-white p-4 shadow-xl dark:border-slate-800 dark:bg-slate-900"
+            role="menu"
+          >
+            <div
+              id="mega-products"
+              hx-get="/menus/products/"
+              hx-trigger="revealed"
+              hx-target="#mega-products"
+              hx-swap="innerHTML"
+              class="space-y-3"
+            >
+              <div class="flex items-center gap-3 text-sm text-slate-500">
+                <span class="h-2 w-2 animate-pulse rounded-full bg-brand-600"></span>
+                Loading product groups...
+              </div>
+            </div>
+          </div>
+        </div>
+        {% static_placeholder "site_navigation" %}
+      </nav>
+      <div class="flex items-center gap-3">
+        <button
+          type="button"
+          class="rounded-lg border border-slate-200 px-3 py-2 text-xs font-semibold uppercase tracking-wide text-slate-600 transition hover:border-brand-600 hover:text-brand-600 focus:outline-none focus:ring-2 focus:ring-brand-600 dark:border-slate-700 dark:text-slate-200"
+          @click="toggleTheme"
+          aria-label="Toggle dark mode"
+        >
+          <span x-text="isDark ? 'Light' : 'Dark'"></span>
+        </button>
+        <button
+          type="button"
+          class="flex items-center rounded-lg border border-slate-200 p-2 text-slate-600 transition hover:border-brand-600 hover:text-brand-600 focus:outline-none focus:ring-2 focus:ring-brand-600 dark:border-slate-700 dark:text-slate-200 lg:hidden"
+          @click="mobileOpen = !mobileOpen"
+          aria-label="Toggle navigation"
+        >
+          <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+    </div>
+    <div
+      x-cloak
+      x-show="mobileOpen"
+      x-transition:enter="transition ease-out duration-200"
+      x-transition:enter-start="opacity-0 -translate-y-2"
+      x-transition:enter-end="opacity-100 translate-y-0"
+      x-transition:leave="transition ease-in duration-150"
+      x-transition:leave-start="opacity-100 translate-y-0"
+      x-transition:leave-end="opacity-0 -translate-y-2"
+      class="border-t border-slate-200 bg-white dark:border-slate-800 dark:bg-slate-950 lg:hidden"
+    >
+      <div class="mx-auto flex max-w-7xl flex-col gap-4 px-4 py-6 sm:px-6 lg:px-8">
+        {% static_placeholder "site_navigation_mobile" %}
+      </div>
     </div>
   </header>
 
@@ -27,14 +138,39 @@
     {% endblock %}
   </main>
 
-  <footer class="footer-modern mt-5">
-    <div class="container py-5">
+  <footer class="border-t border-slate-200 bg-white py-12 dark:border-slate-800 dark:bg-slate-950">
+    <div class="mx-auto grid max-w-7xl gap-8 px-4 sm:px-6 lg:grid-cols-[2fr,1fr,1fr] lg:px-8">
       {% static_placeholder "site_footer" %}
+    </div>
+    <div class="mx-auto mt-10 flex max-w-7xl flex-col items-start justify-between gap-4 px-4 text-sm text-slate-500 sm:flex-row sm:items-center sm:px-6 lg:px-8">
+      <span>© {% now "Y" %} Solak Automation. All rights reserved.</span>
+      <span class="text-slate-400">Engineered for Siemens, SICK, and pharma operations.</span>
     </div>
   </footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/htmx.org@1.9.12"></script>
+  <script src="https://unpkg.com/alpinejs@3.x.x" defer></script>
   {% render_block 'js' %}
+  <script>
+    document.addEventListener('alpine:init', () => {
+      Alpine.data('themeToggle', () => ({
+        isDark: false,
+        mobileOpen: false,
+        initTheme() {
+          const stored = localStorage.getItem('theme');
+          if (stored) {
+            this.isDark = stored === 'dark';
+          } else {
+            this.isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          }
+        },
+        toggleTheme() {
+          this.isDark = !this.isDark;
+          localStorage.setItem('theme', this.isDark ? 'dark' : 'light');
+        },
+      }));
+    });
+  </script>
   <script src="{% static 'solak_cms/js/cms-wizard-fix.js' %}"></script>
 </body>
 </html>

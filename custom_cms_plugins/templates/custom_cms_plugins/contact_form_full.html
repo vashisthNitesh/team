@@ -1,0 +1,50 @@
+<section class="py-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-7">
+        {% if instance.heading %}
+          <h2 class="fw-semibold text-primary">{{ instance.heading }}</h2>
+        {% endif %}
+        {% if instance.description %}
+          <p class="text-muted">{{ instance.description }}</p>
+        {% endif %}
+        <form class="bg-white border rounded-3 p-4" method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label class="form-label" for="contact-name">Name</label>
+              <input class="form-control" id="contact-name" name="name" type="text" required>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label" for="contact-company">Company</label>
+              <input class="form-control" id="contact-company" name="company" type="text">
+            </div>
+            <div class="col-md-6">
+              <label class="form-label" for="contact-email">Email</label>
+              <input class="form-control" id="contact-email" name="email" type="email" required>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label" for="contact-phone">Phone</label>
+              <input class="form-control" id="contact-phone" name="phone" type="text">
+            </div>
+            <div class="col-md-6">
+              <label class="form-label" for="contact-subject">Subject</label>
+              <input class="form-control" id="contact-subject" name="subject" type="text">
+            </div>
+            <div class="col-md-6">
+              <label class="form-label" for="contact-file">Attachment</label>
+              <input class="form-control" id="contact-file" name="attachment" type="file">
+            </div>
+            <div class="col-12">
+              <label class="form-label" for="contact-message">Message</label>
+              <textarea class="form-control" id="contact-message" name="message" rows="4" required></textarea>
+            </div>
+            <div class="col-12">
+              <button class="btn btn-primary" type="submit">{{ instance.submit_label }}</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,12 @@
+{% load cms_tags %}
+{# Structural container wrapper for nesting section plugins #}
+<section class="py-5 {{ instance.background_style }}">
+  <div class="container {{ instance.text_alignment }}">
+    {% if instance.title %}
+      <h2 class="mb-4 text-primary fw-semibold">{{ instance.title }}</h2>
+    {% endif %}
+    {% for plugin in instance.child_plugin_instances %}
+      {% render_plugin plugin %}
+    {% endfor %}
+  </div>
+</section>

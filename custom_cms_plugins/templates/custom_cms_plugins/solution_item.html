@@ -1,0 +1,15 @@
+<div class="accordion-item">
+  <h2 class="accordion-header" id="solutionHeading-{{ instance.pk }}">
+    <button class="accordion-button {% if instance.position != 0 %}collapsed{% endif %}" type="button" data-bs-toggle="collapse" data-bs-target="#solutionCollapse-{{ instance.pk }}" aria-expanded="{% if instance.position == 0 %}true{% else %}false{% endif %}" aria-controls="solutionCollapse-{{ instance.pk }}">
+      {% if instance.icon_class %}
+        <i class="{{ instance.icon_class }} text-primary me-2"></i>
+      {% endif %}
+      {{ instance.title }}
+    </button>
+  </h2>
+  <div id="solutionCollapse-{{ instance.pk }}" class="accordion-collapse collapse {% if instance.position == 0 %}show{% endif %}" aria-labelledby="solutionHeading-{{ instance.pk }}" data-bs-parent="#solutionsAccordion-{{ instance.parent_id }}">
+    <div class="accordion-body">
+      {{ instance.description }}
+    </div>
+  </div>
+</div>

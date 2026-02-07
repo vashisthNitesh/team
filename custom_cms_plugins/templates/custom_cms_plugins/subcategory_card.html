@@ -1,0 +1,19 @@
+<div class="col-12 col-md-6 col-lg-4">
+  <div class="card h-100 border-0 shadow-sm">
+    {% if instance.image %}
+      <img src="{{ instance.image.url }}" class="card-img-top" alt="{{ instance.alt_text|default:instance.name }}">
+    {% endif %}
+    <div class="card-body">
+      <h5 class="card-title">{{ instance.name }}</h5>
+      {% if instance.description %}
+        <p class="text-muted">{{ instance.description }}</p>
+      {% endif %}
+      {% if instance.product_count %}
+        <p class="small text-primary">{{ instance.product_count }} products available</p>
+      {% endif %}
+      {% if instance.link_url %}
+        <a class="btn btn-outline-primary btn-sm" href="{{ instance.link_url }}">Browse</a>
+      {% endif %}
+    </div>
+  </div>
+</div>

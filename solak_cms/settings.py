@@ -114,7 +114,7 @@ CMS_TEMPLATES = [
     ('pages/contact.html', 'Contact'),
 ]
 
-CMS_PERMISSION = True
+CMS_PERMISSION = False
 CMS_CONFIRM_VERSION4 = True
 
 THUMBNAIL_PROCESSORS = (

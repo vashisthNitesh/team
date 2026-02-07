@@ -5,7 +5,7 @@
       return;
     }
 
-    if (event.type === 'keyup' && !['Enter', ' '].includes(event.key)) {
+    if (['keydown', 'keyup'].includes(event.type) && !['Enter', ' '].includes(event.key)) {
       return;
     }
 
@@ -15,9 +15,14 @@
     }
 
     input.checked = true;
+    input.dispatchEvent(new Event('input', { bubbles: true }));
     input.dispatchEvent(new Event('change', { bubbles: true }));
+    if (event.type === 'click') {
+      input.dispatchEvent(new Event('click', { bubbles: true }));
+    }
   };
 
   document.addEventListener('click', ensureWizardSelection);
+  document.addEventListener('keydown', ensureWizardSelection);
   document.addEventListener('keyup', ensureWizardSelection);
 })();

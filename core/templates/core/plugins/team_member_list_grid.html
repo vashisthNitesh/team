@@ -1,0 +1,9 @@
+{% load cms_tags %}
+
+<div class="row g-4">
+  {% for plugin in instance.child_plugin_instances %}
+    <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+      {% render_plugin plugin %}
+    </div>
+  {% endfor %}
+</div>

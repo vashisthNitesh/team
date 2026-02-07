@@ -24,7 +24,11 @@
     </div>
   </header>
 
-  <main>{% block content %}{% endblock %}</main>
+  <main>
+    {% block content %}
+      {% placeholder "content" %}
+    {% endblock %}
+  </main>
 
   <footer class="border-top bg-white mt-5">
     <div class="container py-4">

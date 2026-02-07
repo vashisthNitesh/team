@@ -83,12 +83,12 @@
           {{ description_override|default:member.full_bio|safe }}
         </div>
 
-        {% if member.skills or member.expertise %}
+        {% if member.skills.exists %}
           <h3 class="text-2xl font-semibold mt-12 mb-5">Key Expertise</h3>
           <div class="flex flex-wrap gap-3">
-            {% for skill in member.skills|split:"," %}
+            {% for skill in member.skills.all %}
               <span class="px-4 py-2 bg-blue-100 dark:bg-blue-900/40 text-blue-800 dark:text-blue-200 rounded-full text-sm font-medium">
-                {{ skill|trim }}
+                {{ skill.name }}
               </span>
             {% endfor %}
           </div>

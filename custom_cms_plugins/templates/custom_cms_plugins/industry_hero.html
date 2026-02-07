@@ -1,18 +1,20 @@
-<section class="py-5 bg-dark text-white">
+<section class="section section-hero">
   <div class="container">
-    <div class="row align-items-center">
+    <div class="row align-items-center g-5">
       <div class="col-lg-6">
         {% if instance.eyebrow_text %}
-          <span class="text-uppercase small text-info">{{ instance.eyebrow_text }}</span>
+          <p class="eyebrow">{{ instance.eyebrow_text }}</p>
         {% endif %}
-        <h1 class="display-5 fw-bold">{{ instance.title }}</h1>
+        <h1 class="display-4 fw-bold">{{ instance.title }}</h1>
         {% if instance.description %}
-          <p class="lead opacity-75">{{ instance.description }}</p>
+          <p class="lead text-muted">{{ instance.description }}</p>
         {% endif %}
       </div>
-      <div class="col-lg-6 text-lg-end mt-4 mt-lg-0">
+      <div class="col-lg-6 text-lg-end">
         {% if instance.banner_image %}
-          <img src="{{ instance.banner_image.url }}" class="img-fluid rounded-3 shadow" alt="{{ instance.alt_text|default:instance.title }}">
+          <div class="ui-card p-2 d-inline-block">
+            <img src="{{ instance.banner_image.url }}" class="img-fluid rounded-4" alt="{{ instance.alt_text|default:instance.title }}">
+          </div>
         {% endif %}
       </div>
     </div>

@@ -1,5 +1,5 @@
 <div class="col-12 col-lg-6">
-  <div class="card h-100 border-0 shadow-sm">
+  <div class="ui-card h-100">
     <div class="card-body">
       {% if instance.logo %}
         <img src="{{ instance.logo.url }}" class="mb-3" alt="{{ instance.alt_text|default:instance.name }}">
@@ -22,7 +22,7 @@
         </div>
       {% endif %}
       {% if instance.link_url %}
-        <a class="btn btn-outline-primary btn-sm mt-3" href="{{ instance.link_url }}">{{ instance.button_text }}</a>
+        <a class="btn btn-outline-secondary btn-sm mt-3" href="{{ instance.link_url }}">{{ instance.button_text }}</a>
       {% endif %}
     </div>
   </div>

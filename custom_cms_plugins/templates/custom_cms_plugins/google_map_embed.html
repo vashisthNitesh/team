@@ -1,14 +1,18 @@
-<section class="py-5">
+<section class="section">
   <div class="container">
     {% if instance.heading %}
-      <h2 class="fw-semibold text-primary mb-3">{{ instance.heading }}</h2>
+      <div class="section-header">
+        <h2>{{ instance.heading }}</h2>
+      </div>
     {% endif %}
-    <div class="ratio" style="--bs-aspect-ratio: 56.25%; height: {{ instance.height }}px;">
-      {% if instance.iframe_code %}
-        {{ instance.iframe_code|safe }}
-      {% elif instance.embed_url %}
-        <iframe src="{{ instance.embed_url }}" style="border:0;" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-      {% endif %}
+    <div class="ui-card overflow-hidden">
+      <div class="ratio" style="--bs-aspect-ratio: 56.25%; height: {{ instance.height }}px;">
+        {% if instance.iframe_code %}
+          {{ instance.iframe_code|safe }}
+        {% elif instance.embed_url %}
+          <iframe src="{{ instance.embed_url }}" style="border:0;" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        {% endif %}
+      </div>
     </div>
   </div>
 </section>

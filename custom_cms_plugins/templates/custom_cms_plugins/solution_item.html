@@ -8,7 +8,7 @@
     </button>
   </h2>
   <div id="solutionCollapse-{{ instance.pk }}" class="accordion-collapse collapse {% if instance.position == 0 %}show{% endif %}" aria-labelledby="solutionHeading-{{ instance.pk }}" data-bs-parent="#solutionsAccordion-{{ instance.parent_id }}">
-    <div class="accordion-body">
+    <div class="accordion-body text-muted">
       {{ instance.description }}
     </div>
   </div>

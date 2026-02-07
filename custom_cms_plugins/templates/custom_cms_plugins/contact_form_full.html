@@ -1,14 +1,14 @@
-<section class="py-5">
+<section class="section">
   <div class="container">
-    <div class="row">
-      <div class="col-lg-7">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
         {% if instance.heading %}
-          <h2 class="fw-semibold text-primary">{{ instance.heading }}</h2>
+          <h2 class="fw-semibold">{{ instance.heading }}</h2>
         {% endif %}
         {% if instance.description %}
           <p class="text-muted">{{ instance.description }}</p>
         {% endif %}
-        <form class="bg-white border rounded-3 p-4" method="post" enctype="multipart/form-data">
+        <form class="ui-card p-4 p-lg-5" method="post" enctype="multipart/form-data">
           {% csrf_token %}
           <div class="row g-3">
             <div class="col-md-6">

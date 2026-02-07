@@ -32,6 +32,6 @@ class TeamMemberDetailPluginCMSPlugin(CMSPluginBase):
     model = TeamMemberDetailPlugin
     name = _('Team Member Detail Section')
     module = _('Content')
-    render_template = 'core/plugins/team_member_detail_section.html'
+    render_template = 'core/member_detail.html'
     cache = False
     icon = 'cms-icon cms-icon-plugins'

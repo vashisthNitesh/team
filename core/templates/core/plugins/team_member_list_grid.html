@@ -1,9 +1,17 @@
 {% load cms_tags %}
 
-<div class="row g-4">
-  {% for plugin in instance.child_plugin_instances %}
-    <div class="col-12 col-md-6 col-lg-4 col-xl-3">
-      {% render_plugin plugin %}
+<div class="container mx-auto px-4 py-10 md:px-6 lg:px-8 max-w-7xl">
+  {% if instance.child_plugin_instances %}
+    <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+      {% for plugin in instance.child_plugin_instances %}
+        <div class="group/card-container">
+          {% render_plugin plugin %}
+        </div>
+      {% endfor %}
     </div>
-  {% endfor %}
+  {% else %}
+    <div class="text-center py-16 text-gray-500 dark:text-gray-400 italic">
+      No team members added yet.
+    </div>
+  {% endif %}
 </div>

@@ -1,7 +1,11 @@
+import os
+import sys
 from pathlib import Path
 from django.utils.translation import gettext_lazy as _
-
+from environ import environ
 BASE_DIR = Path(__file__).resolve().parent.parent
+env = environ.Env()
+environ.Env.read_env()
 
 SECRET_KEY = 'django-insecure-change-me'
 DEBUG = True
@@ -30,6 +34,7 @@ INSTALLED_APPS = [
     'adminsortable2',
     'core',
     'custom_cms_plugins',
+'django.contrib.humanize'
 ]
 
 MIDDLEWARE = [
@@ -72,8 +77,12 @@ ASGI_APPLICATION = 'solak_cms.asgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.contrib.gis.db.backends.postgis',
+        'NAME': env.str('DB_NAME', default=''),
+        'USER': env.str('DB_USER', default=''),
+        'PASSWORD': env.str('DB_PASSWORD', default=''),
+        'HOST': env.str('DB_HOST', default=''),
+        'PORT': '5432',
     }
 }
 

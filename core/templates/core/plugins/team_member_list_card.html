@@ -1,17 +1,58 @@
 {% load thumbnail %}
-<a href="{{ instance.member.get_absolute_url }}" class="text-decoration-none text-reset">
-  <div class="ui-card overflow-hidden">
-    {% if instance.member.photo %}
-      {% thumbnail instance.member.photo 900x650 crop upscale as image %}
-      <img src="{{ image.url }}" width="{{ image.width }}" height="{{ image.height }}" alt="{{ instance.member.name }}" loading="lazy" class="card-img-top" />
-    {% else %}
-      <div class="card-img-top bg-light" style="height: 220px;"></div>
-    {% endif %}
-    <div class="card-body">
-      {% if instance.eyebrow %}<p class="eyebrow mb-2">{{ instance.eyebrow }}</p>{% endif %}
-      <h2 class="h5 fw-semibold">{{ instance.member.name }}</h2>
-      <p class="text-primary fw-semibold mb-2">{{ instance.member.role }}</p>
-      <p class="text-muted mb-0">{{ instance.summary|default:instance.member.short_bio|default:instance.member.tagline }}</p>
+
+<a href="{{ instance.member.get_absolute_url }}" class="text-decoration-none text-reset block h-full group">
+  <div class="ui-card h-full flex flex-col overflow-hidden bg-white dark:bg-gray-900 rounded-3xl shadow-lg transition-all duration-400 group-hover:shadow-2xl group-hover:-translate-y-2 border border-gray-200/60 dark:border-gray-700/50 backdrop-blur-sm">
+
+    <!-- Image area with subtle glass overlay on hover -->
+    <div class="relative overflow-hidden aspect-[4/3] bg-gradient-to-br from-gray-50 to-gray-200 dark:from-gray-800 dark:to-gray-950">
+      {% if instance.member.photo %}
+        {% thumbnail instance.member.photo 900x675 crop upscale quality=88 as image %}
+        <img
+          src="{{ image.url }}"
+          width="{{ image.width }}"
+          height="{{ image.height }}"
+          alt="{{ instance.member.name }} — {{ instance.member.role }}"
+          loading="lazy"
+          class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+        />
+        <!-- Subtle gradient overlay + glass accent on hover -->
+        <div class="absolute inset-0 bg-gradient-to-t from-blue-600/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+      {% else %}
+        <div class="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-gray-100 to-gray-300 dark:from-gray-700 dark:to-gray-900">
+          <span class="text-7xl opacity-60 text-gray-400 dark:text-gray-500">👤</span>
+        </div>
+      {% endif %}
     </div>
+
+    <!-- Content -->
+    <div class="flex flex-col flex-grow p-6 sm:p-7">
+      {% if instance.eyebrow %}
+        <p class="eyebrow mb-2.5 text-xs sm:text-sm font-medium uppercase tracking-wide text-gray-500 dark:text-gray-400">
+          {{ instance.eyebrow }}
+        </p>
+      {% endif %}
+
+      <h2 class="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white tracking-tight group-hover:text-blue-700 dark:group-hover:text-blue-300 transition-colors duration-300 mb-1.5">
+        {{ instance.member.name }}
+      </h2>
+
+      <p class="text-base font-semibold text-blue-600 dark:text-blue-400 mb-3 sm:mb-4">
+        {{ instance.member.role }}
+      </p>
+
+      <p class="text-sm sm:text-base text-gray-600 dark:text-gray-300 leading-relaxed line-clamp-3 sm:line-clamp-4 flex-grow mb-5">
+        {{ instance.summary|default:instance.member.short_bio|default:instance.member.tagline|truncatechars:180 }}
+      </p>
+
+      <!-- CTA hint with animated arrow -->
+      <div class="mt-auto flex items-center text-blue-600 dark:text-blue-400 font-medium group-hover:text-blue-700 dark:group-hover:text-blue-300 transition-colors duration-300">
+        View profile
+        <svg class="ml-2.5 w-5 h-5 transition-transform duration-400 group-hover:translate-x-2"
+             fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+        </svg>
+      </div>
+    </div>
+
   </div>
 </a>

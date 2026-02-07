@@ -1,4 +1,4 @@
-{% load cms_tags sekizai_tags menu_tags %}
+{% load cms_tags sekizai_tags menu_tags static %}
 <!doctype html>
 <html lang="en">
 <head>
@@ -38,5 +38,6 @@
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   {% render_block 'js' %}
+  <script src="{% static 'solak_cms/js/cms-wizard-fix.js' %}"></script>
 </body>
 </html>

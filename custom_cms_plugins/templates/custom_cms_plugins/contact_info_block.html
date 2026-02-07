@@ -6,18 +6,18 @@
     <div class="row g-4">
       <div class="col-lg-6">
         {% if instance.address %}
-          <p class="mb-2"><strong>Address</strong><br>{{ instance.address|linebreaksbr }}</p>
+          <p class="mb-2"><strong>{{ instance.address_label }}</strong><br>{{ instance.address|linebreaksbr }}</p>
         {% endif %}
         {% if instance.phone %}
-          <p class="mb-2"><strong>Phone</strong><br>{{ instance.phone }}</p>
+          <p class="mb-2"><strong>{{ instance.phone_label }}</strong><br>{{ instance.phone }}</p>
         {% endif %}
         {% if instance.email %}
-          <p class="mb-2"><strong>Email</strong><br>{{ instance.email }}</p>
+          <p class="mb-2"><strong>{{ instance.email_label }}</strong><br>{{ instance.email }}</p>
         {% endif %}
       </div>
       <div class="col-lg-6">
         {% if instance.hours %}
-          <p class="mb-2"><strong>Hours</strong></p>
+          <p class="mb-2"><strong>{{ instance.hours_label }}</strong></p>
           <ul class="list-unstyled small text-muted">
             {% for line in instance.hours.splitlines %}
               <li>{{ line }}</li>
@@ -25,7 +25,7 @@
           </ul>
         {% endif %}
         {% if instance.social_links %}
-          <p class="mb-2"><strong>Connect</strong></p>
+          <p class="mb-2"><strong>{{ instance.social_label }}</strong></p>
           <ul class="list-unstyled small text-muted">
             {% for line in instance.social_links.splitlines %}
               <li>{{ line }}</li>

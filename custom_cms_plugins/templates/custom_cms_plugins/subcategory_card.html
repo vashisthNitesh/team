@@ -12,7 +12,7 @@
         <p class="small text-primary">{{ instance.product_count }} products available</p>
       {% endif %}
       {% if instance.link_url %}
-        <a class="btn btn-outline-primary btn-sm" href="{{ instance.link_url }}">Browse</a>
+        <a class="btn btn-outline-primary btn-sm" href="{{ instance.link_url }}">{{ instance.button_text }}</a>
       {% endif %}
     </div>
   </div>

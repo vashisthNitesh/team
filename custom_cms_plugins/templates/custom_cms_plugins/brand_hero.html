@@ -2,7 +2,9 @@
   <div class="container">
     <div class="row align-items-center">
       <div class="col-lg-6">
-        <span class="text-uppercase small text-info">Authorized brand partner</span>
+        {% if instance.eyebrow_text %}
+          <span class="text-uppercase small text-info">{{ instance.eyebrow_text }}</span>
+        {% endif %}
         <h1 class="display-5 fw-bold">{{ instance.brand_name }}</h1>
         {% if instance.tagline %}
           <p class="lead">{{ instance.tagline }}</p>

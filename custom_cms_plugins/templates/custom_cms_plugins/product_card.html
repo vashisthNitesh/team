@@ -11,7 +11,7 @@
         {% endif %}
       </div>
       {% if instance.model_no %}
-        <p class="text-muted small">Model: {{ instance.model_no }}</p>
+        <p class="text-muted small">{{ instance.model_label }}: {{ instance.model_no }}</p>
       {% endif %}
       {% if instance.short_description %}
         <p class="card-text">{{ instance.short_description }}</p>
@@ -19,7 +19,7 @@
     </div>
     {% if instance.link_url %}
       <div class="card-footer bg-transparent border-0">
-        <a href="{{ instance.link_url }}" class="btn btn-outline-primary">View details</a>
+        <a href="{{ instance.link_url }}" class="btn btn-outline-primary">{{ instance.button_text }}</a>
       </div>
     {% endif %}
   </div>

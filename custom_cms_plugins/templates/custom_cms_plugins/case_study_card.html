@@ -6,7 +6,7 @@
     <div class="card-body">
       <h5 class="card-title">{{ instance.title }}</h5>
       {% if instance.client %}
-        <p class="text-muted small">Client: {{ instance.client }}</p>
+        <p class="text-muted small">{{ instance.client_label }}: {{ instance.client }}</p>
       {% endif %}
       {% if instance.summary %}
         <p class="text-muted">{{ instance.summary }}</p>
@@ -21,7 +21,7 @@
     </div>
     {% if instance.link_url %}
       <div class="card-footer bg-transparent border-0">
-        <a class="btn btn-outline-primary btn-sm" href="{{ instance.link_url }}">Read case study</a>
+        <a class="btn btn-outline-primary btn-sm" href="{{ instance.link_url }}">{{ instance.button_text }}</a>
       </div>
     {% endif %}
   </div>

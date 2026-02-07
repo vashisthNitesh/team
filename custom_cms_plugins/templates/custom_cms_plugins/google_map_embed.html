@@ -8,8 +8,6 @@
         {{ instance.iframe_code|safe }}
       {% elif instance.embed_url %}
         <iframe src="{{ instance.embed_url }}" style="border:0;" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-      {% else %}
-        <div class="border rounded-3 d-flex align-items-center justify-content-center text-muted">Add a Google Maps embed URL.</div>
       {% endif %}
     </div>
   </div>

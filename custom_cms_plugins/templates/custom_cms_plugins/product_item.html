@@ -6,7 +6,7 @@
     <div class="card-body">
       <h5 class="card-title">{{ instance.name }}</h5>
       {% if instance.model_no %}
-        <p class="small text-muted">Model: {{ instance.model_no }}</p>
+        <p class="small text-muted">{{ instance.model_label }}: {{ instance.model_no }}</p>
       {% endif %}
       {% if instance.key_specs %}
         <ul class="small text-muted">
@@ -18,10 +18,10 @@
     </div>
     <div class="card-footer bg-transparent border-0 d-flex gap-2">
       {% if instance.request_quote_url %}
-        <a class="btn btn-primary btn-sm" href="{{ instance.request_quote_url }}">Request quote</a>
+        <a class="btn btn-primary btn-sm" href="{{ instance.request_quote_url }}">{{ instance.request_quote_label }}</a>
       {% endif %}
       {% if instance.detail_url %}
-        <a class="btn btn-outline-primary btn-sm" href="{{ instance.detail_url }}">View detail</a>
+        <a class="btn btn-outline-primary btn-sm" href="{{ instance.detail_url }}">{{ instance.detail_label }}</a>
       {% endif %}
     </div>
   </div>

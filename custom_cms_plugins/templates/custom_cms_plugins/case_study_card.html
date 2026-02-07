@@ -1,27 +1,35 @@
-<div class="col-12 col-lg-4">
-  <div class="ui-card h-100">
-    {% if instance.image %}
-      <img src="{{ instance.image.url }}" class="card-img-top" alt="{{ instance.alt_text|default:instance.title }}">
-    {% endif %}
-    <div class="card-body">
-      <h5 class="card-title">{{ instance.title }}</h5>
+<div class="group rounded-2xl border border-slate-200 bg-white shadow-md transition duration-200 hover:-translate-y-1 hover:shadow-xl dark:border-slate-800 dark:bg-slate-900">
+  {% if instance.image %}
+    <div class="overflow-hidden rounded-t-2xl">
+      <img src="{{ instance.image.url }}" class="h-44 w-full object-cover transition duration-200 group-hover:scale-105" alt="{{ instance.alt_text|default:instance.title }}">
+    </div>
+  {% endif %}
+  <div class="flex h-full flex-col gap-4 p-6">
+    <div>
+      <h3 class="text-lg font-semibold text-slate-900 dark:text-white">{{ instance.title }}</h3>
       {% if instance.client %}
-        <p class="text-muted small">{{ instance.client_label }}: {{ instance.client }}</p>
-      {% endif %}
-      {% if instance.summary %}
-        <p class="text-muted">{{ instance.summary }}</p>
-      {% endif %}
-      {% if instance.results %}
-        <ul class="small text-muted">
-          {% for line in instance.results.splitlines %}
-            <li>{{ line }}</li>
-          {% endfor %}
-        </ul>
+        <p class="mt-2 text-xs font-semibold uppercase tracking-[0.2em] text-emerald-600">{{ instance.client_label }}: {{ instance.client }}</p>
       {% endif %}
     </div>
+    {% if instance.summary %}
+      <p class="text-sm text-slate-600 dark:text-slate-300">{{ instance.summary }}</p>
+    {% endif %}
+    {% if instance.results %}
+      <ul class="space-y-2 text-sm text-slate-500 dark:text-slate-400">
+        {% for line in instance.results.splitlines %}
+          <li class="flex items-start gap-2">
+            <span class="mt-1 h-2 w-2 rounded-full bg-brand-600"></span>
+            <span>{{ line }}</span>
+          </li>
+        {% endfor %}
+      </ul>
+    {% endif %}
     {% if instance.link_url %}
-      <div class="card-footer bg-transparent border-0">
-        <a class="btn btn-outline-secondary btn-sm" href="{{ instance.link_url }}">{{ instance.button_text }}</a>
+      <div class="mt-auto">
+        <a class="inline-flex items-center gap-2 rounded-lg border border-slate-300 px-4 py-2 text-xs font-semibold uppercase tracking-wide text-slate-700 transition hover:border-brand-600 hover:text-brand-600 focus:outline-none focus:ring-2 focus:ring-brand-500 dark:border-slate-700 dark:text-slate-200" href="{{ instance.link_url }}">
+          {{ instance.button_text }}
+          <span aria-hidden="true">→</span>
+        </a>
       </div>
     {% endif %}
   </div>

@@ -1,24 +1,63 @@
-<section class="section section-hero">
-  <div class="container">
-    <div class="row align-items-center g-5">
-      <div class="col-lg-6">
-        {% if instance.eyebrow_text %}
-          <p class="eyebrow">{{ instance.eyebrow_text }}</p>
-        {% endif %}
-        <h1 class="display-4 fw-bold">{{ instance.brand_name }}</h1>
-        {% if instance.tagline %}
-          <p class="lead text-muted">{{ instance.tagline }}</p>
-        {% endif %}
-        {% if instance.description %}
-          <p class="text-muted">{{ instance.description }}</p>
-        {% endif %}
+<section class="relative overflow-hidden bg-slate-950 text-white">
+  <div class="absolute inset-0">
+    {% if instance.banner_image %}
+      <img src="{{ instance.banner_image.url }}" alt="{{ instance.alt_text|default:instance.brand_name }}" class="h-full w-full object-cover opacity-30">
+    {% endif %}
+    <div class="absolute inset-0 bg-gradient-to-r from-slate-950 via-slate-950/80 to-slate-950/40"></div>
+  </div>
+  <div class="relative mx-auto flex max-w-7xl flex-col gap-10 px-4 py-16 sm:px-6 lg:flex-row lg:items-center lg:gap-12 lg:px-8 lg:py-20">
+    <div class="max-w-xl">
+      {% if instance.eyebrow_text %}
+        <p class="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-emerald-300">{{ instance.eyebrow_text }}</p>
+      {% endif %}
+      <h1 class="text-4xl font-semibold leading-tight tracking-tight sm:text-5xl lg:text-6xl">{{ instance.brand_name }}</h1>
+      {% if instance.tagline %}
+        <p class="mt-5 text-lg text-slate-200 sm:text-xl">{{ instance.tagline }}</p>
+      {% endif %}
+      {% if instance.description %}
+        <p class="mt-4 text-base text-slate-300">{{ instance.description }}</p>
+      {% endif %}
+      <div class="mt-8 flex flex-wrap gap-4">
+        <button
+          type="button"
+          class="rounded-lg bg-brand-600 px-6 py-3 text-sm font-semibold text-white shadow-md transition duration-200 hover:brightness-110 focus:outline-none focus:ring-2 focus:ring-brand-500"
+          hx-get="/contact/quick-quote/"
+          hx-target="#quick-quote-modal"
+          hx-swap="innerHTML"
+        >
+          Request a quote
+        </button>
+        <button
+          type="button"
+          class="rounded-lg border border-white/30 px-6 py-3 text-sm font-semibold text-white transition duration-200 hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-emerald-300"
+          hx-get="/contact/quick-call/"
+          hx-target="#quick-quote-modal"
+          hx-swap="innerHTML"
+        >
+          Talk to an engineer
+        </button>
       </div>
-      <div class="col-lg-6 text-lg-end">
-        {% if instance.banner_image %}
-          <div class="ui-card p-2 d-inline-block">
-            <img src="{{ instance.banner_image.url }}" class="img-fluid rounded-4" alt="{{ instance.alt_text|default:instance.brand_name }}">
+    </div>
+    <div class="flex-1">
+      <div class="rounded-2xl border border-white/10 bg-white/5 p-6 shadow-xl backdrop-blur">
+        <div class="grid gap-4 sm:grid-cols-2">
+          <div class="rounded-xl bg-white/10 p-4">
+            <p class="text-xs uppercase tracking-[0.2em] text-slate-300">Lead time</p>
+            <p class="mt-3 text-2xl font-semibold">48 hrs</p>
           </div>
-        {% endif %}
+          <div class="rounded-xl bg-white/10 p-4">
+            <p class="text-xs uppercase tracking-[0.2em] text-slate-300">Coverage</p>
+            <p class="mt-3 text-2xl font-semibold">MEA + EU</p>
+          </div>
+          <div class="rounded-xl bg-white/10 p-4">
+            <p class="text-xs uppercase tracking-[0.2em] text-slate-300">Support</p>
+            <p class="mt-3 text-2xl font-semibold">24/7</p>
+          </div>
+          <div class="rounded-xl bg-white/10 p-4">
+            <p class="text-xs uppercase tracking-[0.2em] text-slate-300">Compliance</p>
+            <p class="mt-3 text-2xl font-semibold">GMP-ready</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
